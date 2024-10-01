@@ -18,7 +18,7 @@ func Start() {
 	StatusRouter(api)
 
 	// Start the API.
-	log.Fatal(app.Listen(":6969"))
+	log.Fatal(app.Listen(":8080"))
 }
 
 // StatusRouter is the router for all setup methods.
