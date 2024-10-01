@@ -1,0 +1,83 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/kubernetes-helm-minikube
+{
+	"name": "main",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
+
+	"features": {
+		"ghcr.io/devcontainers/features/go:1": {
+			"version": "latest"
+		},
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/powershell:1": {
+			"version": "latest",
+			"modules": [
+				"Terminal-Icons"
+			]
+		}
+	},
+	
+	"customizations": {
+		"vscode": {
+			"settings": {
+				// Git settings.
+				"git.path": "/usr/bin/git",
+				"git.autofetch": true,
+    		    "git.confirmSync": false,
+
+				// Helps with some annoying warnings in vscode-icons.
+				"workbench.iconTheme": "vscode-icons",
+				"vsicons.dontShowNewVersionMessage": true,
+
+				// Set default user for SSH connections via Tailscale.
+				"tailscale.ssh.defaultUsername": "kbadmin",
+
+				// Set tab size to common default.
+				"editor.tabSize": 2,
+
+				// Only enable spell check in markdown files.
+				"cSpell.enabledLanguageIds": [
+					"markdown"
+				],
+				// Add some custom words to the spell checker.
+				"cSpell.userWords": [
+					"devcontainers",
+					"dockerfiles",
+					"peerings",
+					"Tailscale",
+					"vnet",
+					"vnets"
+				],
+
+				// Turn off telemetry.
+				"redhat.telemetry.enabled": false
+			},
+			"extensions": [
+				"DavidAnson.vscode-markdownlint",
+				"ms-vscode.powershell",
+				"redhat.vscode-yaml",
+				"vscode-icons-team.vscode-icons"
+			]
+		}
+	},
+	
+	// This uses the host network instead of the container, allowing access to VPNs from the host.
+	"runArgs": [
+		"--network=host"
+	]
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "terraform login"
+
+	// Use 'postStartCommand' to run commands after the container is created like starting minikube.
+	// "postStartCommand": "nohup bash -c 'minikube start &' > minikube.log 2>&1",
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
