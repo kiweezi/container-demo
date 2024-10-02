@@ -21,7 +21,7 @@ docker tag container-demo mytmptst.azurecr.io/samples/container-demo
 # Push image to the registry.
 docker push mytmptst.azurecr.io/samples/container-demo
 
-# Remove image.
+# Remove local created images.
 docker image remove container-demo
 docker image remove mytmptst.azurecr.io/samples/container-demo --force
 
@@ -34,5 +34,7 @@ docker run --publish 8080:8080 mytmptst.azurecr.io/samples/container-demo
 # Hit the default endpoint.
 curl http://localhost:8080/api/
 
-# Remove image.
-docker image remove container-demo
+### Cleaning up ###
+docker container prune -f
+docker image prune -f
+docker buildx prune -f
