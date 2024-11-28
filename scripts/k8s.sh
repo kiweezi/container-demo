@@ -14,12 +14,8 @@ eval $(minikube -p minikube docker-env)
 docker build -t container-demo -f Dockerfile .
 # Show the list of images.
 docker image ls
-# Tag the image with useful metadata.
-docker tag container-demo latest
 
 ### Deploying to Kubernetes ###
-# Open a tunnel to make networking easier.
-minikube tunnel
 # Apply the manifest to create a deployment and service.
 kubectl apply -f deploy/manifest.yaml
 
@@ -40,7 +36,7 @@ curl -w "\n" http://192.168.58.2:30443/api/
 
 # Delete all pods in a separate terminal, in parallel to the above.
 kubectl delete pods --all
-# See pods deployed.
+# See pods have already redeployed.
 kubectl get pods
 
 ### Cleaning up ###
