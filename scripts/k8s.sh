@@ -54,4 +54,3 @@ minikube delete
 # Delete the images.
 docker container prune -f
 docker image prune -f
-docker buildx prune -f
