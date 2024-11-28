@@ -16,20 +16,22 @@ docker run --publish 8080:8080 container-demo
 curl http://localhost:8080/api/
 
 ### Interacting with the registry ###
+# Set the registry address.
+REGISTRY=""
 # Tag the image with metadata for the registry.
-docker tag container-demo mytmptst.azurecr.io/samples/container-demo
+docker tag container-demo $REGISTRY/samples/container-demo
 # Push image to the registry.
-docker push mytmptst.azurecr.io/samples/container-demo
+docker push $REGISTRY/samples/container-demo
 
 # Remove local created images.
 docker image remove container-demo
-docker image remove mytmptst.azurecr.io/samples/container-demo --force
+docker image remove $REGISTRY/samples/container-demo --force
 
 # Pull image from the registry.
-docker pull mytmptst.azurecr.io/samples/container-demo
+docker pull $REGISTRY/samples/container-demo
 
 # Run the container.
-docker run --publish 8080:8080 mytmptst.azurecr.io/samples/container-demo
+docker run --publish 8080:8080 $REGISTRY/samples/container-demo
 
 # Hit the default endpoint.
 curl http://localhost:8080/api/
