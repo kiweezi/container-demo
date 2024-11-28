@@ -30,12 +30,27 @@ kubectl get service container-demo
 
 # Hit the default endpoint.
 curl -w "\n" http://192.168.58.2:30443/api/
+# Hit the new endpoint.
+curl -w "\n" http://192.168.58.2:30443/api/long/
+
+### Causing some damage ###
+# Hit the new endpoint, followed by old in a new terminal.
+curl -w "\n" http://192.168.58.2:30443/api/long/
+curl -w "\n" http://192.168.58.2:30443/api/
+
+# Delete all pods in a separate terminal, in parallel to the above.
+kubectl delete pods --all
+# See pods deployed.
+kubectl get pods
 
 ### Cleaning up ###
 # Delete Kubernetes resources.
 kubectl delete -f deploy/manifest.yaml
 # Stop minikube.
 minikube stop
+
+# Delete minikube.
+minikube delete
 # Delete the images.
 docker container prune -f
 docker image prune -f
