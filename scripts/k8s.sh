@@ -1,15 +1,16 @@
-### Setup overview ###
+### Prep ###
 # Start minikube.
 minikube start --static-ip=192.168.58.2
+# Make sure minikube is pointing to the local docker daemon.
+eval $(minikube -p minikube docker-env)
 
+### Setup overview ###
 # Docker, Minikube and Kubernetes info.
 docker --version
 minikube version
 kubectl version
 
 ### Building images ###
-# Make sure minikube is pointing to the local docker daemon.
-eval $(minikube -p minikube docker-env)
 # Build the image.
 docker build -t container-demo -f Dockerfile .
 # Show the list of images.
